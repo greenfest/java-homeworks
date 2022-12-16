@@ -58,8 +58,7 @@ public class Main {
 
     //3. Реализовать простой калькулятор
 
-    public static void calc()
-    {
+    public static void calc() {
         double num1;
         double num2;
         String operation;

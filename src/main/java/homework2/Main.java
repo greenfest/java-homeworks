@@ -8,10 +8,8 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
 //        filterString();
 //        bubbleSort();
         parseJSONAndGetString();
@@ -22,8 +20,7 @@ public class Main
      * Сформируйте часть WHERE этого запроса, используя StringBuilder.
      * Данные для фильтрации приведены ниже в виде json строки
      */
-    public static void filterString()
-    {
+    public static void filterString() {
         JSONObject student = new JSONObject("{\"name\":\"Ivanov\", \"country\":\"Russia\", \"city\":\"Moscow\", \"age\":\"null\"}");
         String name = (String) student.get("name");
         String country = (String) student.get("country");
@@ -34,8 +31,7 @@ public class Main
     /**
      * 2. Реализуйте алгоритм сортировки пузырьком числового массива, результат после каждой итерации запишите в лог-файл
      */
-    public static String bubbleSort()
-    {
+    public static String bubbleSort() {
         Logger logger = Logger.getLogger(Main.class.getName());
         FileHandler fh = null;
         try {
@@ -76,14 +72,12 @@ public class Main
      * Написать метод(ы), который распарсит json и, используя StringBuilder,
      * создаст строки вида: Студент [фамилия] получил [оценка] по предмету [предмет]
      */
-    public static void parseJSONAndGetString()
-    {
+    public static void parseJSONAndGetString() {
         JSONArray students = new JSONArray("[" +
                 "{\"фамилия\":\"Иванов\",\"оценка\":\"5\",\"предмет\":\"Математика\"}," +
                 "{\"фамилия\":\"Петрова\",\"оценка\":\"4\",\"предмет\":\"Информатика\"}," +
                 "{\"фамилия\":\"Краснов\",\"оценка\":\"5\",\"предмет\":\"Физика\"}]");
-        for (int i = 0; i < students.length(); i++)
-        {
+        for (int i = 0; i < students.length(); i++) {
             StringBuilder lastName = new StringBuilder((String) students.getJSONObject(i).get("фамилия"));
             StringBuilder grade = new StringBuilder((String) students.getJSONObject(i).get("оценка"));
             StringBuilder subject = new StringBuilder((String) students.getJSONObject(i).get("предмет"));
