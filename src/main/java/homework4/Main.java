@@ -1,13 +1,16 @@
 package homework4;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 //        reverseList();
-        queue();
+//        queue();
+        calc();
     }
 
     /**
@@ -79,5 +82,67 @@ public class Main {
         int num;
         num = list.get(0);
         return num;
+    }
+
+    /**
+     * 3. В калькулятор добавьте возможность отменить последнюю операцию.
+     */
+    private static void calc() {
+        Deque<Double> queue = new LinkedList<>();
+        boolean flag = true;
+        while (flag) {
+            double result = calculate();
+            queue.addLast(result);
+            System.out.println(queue);
+            System.out.println("Для отмены операции введите 'cancel'");
+            System.out.println("Для выхода введите 'exit'");
+            System.out.println("Для продолжения введите любой символ");
+            Scanner scanner = new Scanner(System.in);
+            String back = scanner.next();
+
+            if (back.equals("cancel")) {
+                queue.pollFirst();
+                System.out.println("Операция отменена!");
+            }
+            if (back.equals("exit")) {
+                flag = false;
+            }
+        }
+    }
+
+    public static double calculate() {
+        double num1;
+        double num2;
+        String operation;
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Пожалуйста, введите первое число: ");
+        try {
+            num1 = input.nextDouble();
+        } catch (Exception e) {
+            System.out.println("Ошибка ввода данных");
+            return 0;
+        }
+
+        System.out.println("Пожалуйста, введите второе число: ");
+        try {
+            num2 = input.nextDouble();
+        } catch (Exception e) {
+            System.out.println("Ошибка ввода данных");
+            return 0;
+        }
+
+        Scanner op = new Scanner(System.in);
+        System.out.println("Пожалуйста, введите операцию (+, -, /, *)");
+        operation = op.next();
+
+        return switch (operation) {
+            case "+" -> (num1 + num2);
+            case "-" -> (num1 - num2);
+            case "/" -> (num1 / num2);
+            case "*" -> (num1 * num2);
+            default -> 0;
+        };
     }
 }
